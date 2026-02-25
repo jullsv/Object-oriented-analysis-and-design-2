@@ -1,0 +1,9 @@
+D:\6 семестр\ооап\WithPattern\WithPattern\bin\Debug\WithPattern.exe.config
+D:\6 семестр\ооап\WithPattern\WithPattern\bin\Debug\WithPattern.exe
+D:\6 семестр\ооап\WithPattern\WithPattern\bin\Debug\WithPattern.pdb
+D:\6 семестр\ооап\WithPattern\WithPattern\obj\Debug\WithPattern.csproj.AssemblyReference.cache
+D:\6 семестр\ооап\WithPattern\WithPattern\obj\Debug\WithPattern.Properties.Resources.resources
+D:\6 семестр\ооап\WithPattern\WithPattern\obj\Debug\WithPattern.csproj.GenerateResource.cache
+D:\6 семестр\ооап\WithPattern\WithPattern\obj\Debug\WithPattern.csproj.CoreCompileInputs.cache
+D:\6 семестр\ооап\WithPattern\WithPattern\obj\Debug\WithPattern.exe
+D:\6 семестр\ооап\WithPattern\WithPattern\obj\Debug\WithPattern.pdb

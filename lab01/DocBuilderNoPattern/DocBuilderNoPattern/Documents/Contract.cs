@@ -5,9 +5,9 @@ namespace DocBuilderNoPattern.Documents
 {
     public class Contract
     {
-        public string DocumentType { get; set; } = "Договор оказания услуг";
+        public string DocumentType { get; set; }
         public int DocNumber { get; set; }
-        public string Title { get; set; } = "Договор оказания услуг";
+        public string Title { get; set; }
 
         public string CompanyName { get; set; }
         public string INN { get; set; }
@@ -15,45 +15,38 @@ namespace DocBuilderNoPattern.Documents
 
         public string Party1 { get; set; }
         public string Party2 { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public int StartDate { get; set; }
+        public int EndDate { get; set; }
         public string Clauses { get; set; }
 
-        public Contract(string companyName, string inn, string legalAddress)
+        public Contract()
         {
-            DocNumber = GenerateNumber();
-            CompanyName = companyName;
-            INN = inn;
-            LegalAddress = legalAddress;
-        }
-
-        private int GenerateNumber()
-        {
-            return new Random().Next(1000, 9999);
+            DocNumber = new Random().Next(1000, 9999);
+            DocumentType = "Договор оказания услуг";
+            Title = "Договор оказания услуг";
         }
 
         public void Save(string path)
         {
-            File.WriteAllText(path, GetDocumentText());
+            File.WriteAllText(path, GetText());
         }
 
         public void Render()
         {
-            Console.WriteLine($"=== {Title} №{DocNumber} ===");
-            Console.WriteLine($"Сторона 1: {Party1}");
-            Console.WriteLine($"Сторона 2: {Party2}");
-            Console.WriteLine($"Период: {StartDate:dd.MM.yyyy} - {EndDate:dd.MM.yyyy}");
+            Console.WriteLine(GetText());
         }
 
-        public string GetDocumentText()
+        public string GetText()
         {
             return $"Договор №{DocNumber}\n" +
+                   $"Тип: {DocumentType}\n" +
                    $"Организация: {CompanyName}\n" +
                    $"ИНН: {INN}\n" +
-                   $"Юр. адрес: {LegalAddress}\n" +
+                   $"Адрес: {LegalAddress}\n" +
                    $"Сторона 1: {Party1}\n" +
                    $"Сторона 2: {Party2}\n" +
-                   $"Период: с {StartDate:dd.MM.yyyy} по {EndDate:dd.MM.yyyy}\n" +
+                   $"Дата начала: {StartDate}\n" +
+                   $"Дата окончания: {EndDate}\n" +
                    $"Условия: {Clauses}";
         }
     }

@@ -1,0 +1,152 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|d:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\withpattern\\withpattern\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\withpattern\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\withpattern\\documents\\basedocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\documents\\basedocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\withpattern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\withpattern\\documents\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\documents\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\withpattern\\documents\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\documents\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\withpattern\\documents\\act.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\documents\\act.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\withpattern\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5B29F2E5-0382-477E-8032-3F6908D548EA}|WithPattern\\WithPattern.csproj|solutionrelative:withpattern\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Program.cs",
+              "RelativeDocumentMoniker": "WithPattern\\Program.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Program.cs",
+              "RelativeToolTip": "WithPattern\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:00:26.667Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\MainForm.cs",
+              "RelativeDocumentMoniker": "WithPattern\\MainForm.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "WithPattern\\MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:06:11.061Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\MainForm.cs",
+              "RelativeDocumentMoniker": "WithPattern\\MainForm.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\MainForm.cs",
+              "RelativeToolTip": "WithPattern\\MainForm.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAcwPgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:02:09.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaseDocument.cs",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\BaseDocument.cs",
+              "RelativeDocumentMoniker": "WithPattern\\Documents\\BaseDocument.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\BaseDocument.cs",
+              "RelativeToolTip": "WithPattern\\Documents\\BaseDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:03:38.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Contract.cs",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\Contract.cs",
+              "RelativeDocumentMoniker": "WithPattern\\Documents\\Contract.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\Contract.cs",
+              "RelativeToolTip": "WithPattern\\Documents\\Contract.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:01:29.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Invoice.cs",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\Invoice.cs",
+              "RelativeDocumentMoniker": "WithPattern\\Documents\\Invoice.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\Invoice.cs",
+              "RelativeToolTip": "WithPattern\\Documents\\Invoice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:01:46.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Act.cs",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\Act.cs",
+              "RelativeDocumentMoniker": "WithPattern\\Documents\\Act.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Documents\\Act.cs",
+              "RelativeToolTip": "WithPattern\\Documents\\Act.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:01:19.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\1\\\u0440\u0435\u043F\u043E\u0437\u0438\u0442\\lab01\\WithPattern\\WithPattern\\Form1.cs",
+              "RelativeDocumentMoniker": "WithPattern\\Form1.cs",
+              "ToolTip": "D:\\6 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043E\u043E\u0430\u043F\\WithPattern\\WithPattern\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "..\\..\\..\\..\\WithPattern\\WithPattern\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T09:00:13.855Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
