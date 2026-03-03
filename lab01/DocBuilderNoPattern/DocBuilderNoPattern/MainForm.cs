@@ -150,17 +150,23 @@ namespace DocBuilderNoPattern
             this.Controls.Add(tabControl);
 
             lstDocuments = new ListBox { Location = new Point(10, 320), Size = new Size(300, 150) };
-            lstDocuments.SelectedIndexChanged += (s, e) => ShowDocument();
-            this.Controls.Add(lstDocuments);
+            lstDocuments.SelectedIndexChanged += (s, e) =>
+            {
+                if (lstDocuments.SelectedIndex >= 0 && lstDocuments.SelectedIndex < documents.Count)
+                {
+                    currentDocument = documents[lstDocuments.SelectedIndex];
+                    ShowDocument();
+                }
+            };
+                this.Controls.Add(lstDocuments);
 
-            txtContent = new TextBox { Location = new Point(320, 320), Size = new Size(650, 300), Multiline = true, ReadOnly = true, ScrollBars = ScrollBars.Vertical };
-            this.Controls.Add(txtContent);
+                txtContent = new TextBox { Location = new Point(320, 320), Size = new Size(650, 300), Multiline = true, ReadOnly = true, ScrollBars = ScrollBars.Vertical };
+                this.Controls.Add(txtContent);
 
-            var btnSave = new Button { Text = "Сохранить", Location = new Point(450, 630), Size = new Size(120, 35) };
-            btnSave.Click += (s, e) => SaveDocument();
-            this.Controls.Add(btnSave);
-        }
-
+                var btnSave = new Button { Text = "Сохранить", Location = new Point(450, 630), Size = new Size(120, 35) };
+                btnSave.Click += (s, e) => SaveDocument();
+                this.Controls.Add(btnSave);
+            }
         private void CreateInvoice()
         {
             var invoice = new Invoice
