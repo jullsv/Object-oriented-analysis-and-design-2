@@ -170,7 +170,14 @@ namespace WithPattern
             this.Controls.Add(tabControl);
 
             lstDocuments = new ListBox { Location = new Point(10, 320), Size = new Size(300, 150) };
-            lstDocuments.SelectedIndexChanged += (s, e) => ShowDocument();
+            lstDocuments.SelectedIndexChanged += (s, e) =>
+            {
+                if (lstDocuments.SelectedIndex >= 0 && lstDocuments.SelectedIndex < documents.Count)
+                {
+                    currentDocument = documents[lstDocuments.SelectedIndex];
+                    ShowDocument();
+                }
+            };
             this.Controls.Add(lstDocuments);
 
             txtContent = new TextBox { Location = new Point(320, 320), Size = new Size(650, 300), Multiline = true, ReadOnly = true, ScrollBars = ScrollBars.Vertical };
