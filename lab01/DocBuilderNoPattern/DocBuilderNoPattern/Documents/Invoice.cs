@@ -5,53 +5,45 @@ namespace DocBuilderNoPattern.Documents
 {
     public class Invoice
     {
-        public string DocumentType { get; set; } = "Счёт на оплату";
+        public string DocumentType { get; set; }
         public int DocNumber { get; set; }
-        public string Title { get; set; } = "Счёт на оплату";
+        public string Title { get; set; }
 
         public string CompanyName { get; set; }
         public string INN { get; set; }
         public string BankAccount { get; set; }
 
-        public double Amount { get; set; }
+        public int Amount { get; set; }
         public string ClientName { get; set; }
-        public DateTime DueDate { get; set; }
+        public int DueDate { get; set; }
 
-        public Invoice(string companyName, string inn, string bankAccount)
+        public Invoice()
         {
-            DocNumber = GenerateNumber();
-            CompanyName = companyName;
-            INN = inn;
-            BankAccount = bankAccount;
-        }
-
-        private int GenerateNumber()
-        {
-            return new Random().Next(1000, 9999);
+            DocNumber = new Random().Next(1000, 9999);
+            DocumentType = "Счёт на оплату";
+            Title = "Счёт на оплату";
         }
 
         public void Save(string path)
         {
-            File.WriteAllText(path, GetDocumentText());
+            File.WriteAllText(path, GetText());
         }
 
         public void Render()
         {
-            Console.WriteLine($"=== {Title} №{DocNumber} ===");
-            Console.WriteLine($"Компания: {CompanyName}");
-            Console.WriteLine($"Клиент: {ClientName}");
-            Console.WriteLine($"Сумма: {Amount:C}");
+            Console.WriteLine(GetText());
         }
 
-        public string GetDocumentText()
+        public string GetText()
         {
             return $"Счёт №{DocNumber}\n" +
+                   $"Тип: {DocumentType}\n" +
                    $"Организация: {CompanyName}\n" +
                    $"ИНН: {INN}\n" +
-                   $"Расчётный счёт: {BankAccount}\n" +
+                   $"Р/с: {BankAccount}\n" +
                    $"Клиент: {ClientName}\n" +
-                   $"Сумма: {Amount:C}\n" +
-                   $"Дата оплаты: {DueDate:dd.MM.yyyy}";
+                   $"Сумма: {Amount}\n" +
+                   $"Дата оплаты: {DueDate}";
         }
     }
 }

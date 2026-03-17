@@ -1,443 +1,277 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing;
 using DocBuilderNoPattern.Documents;
-using Microsoft.VisualBasic;
 
 namespace DocBuilderNoPattern
 {
     public partial class MainForm : Form
     {
-        private class CompanyData
-        {
-            public string Name { get; set; }
-            public string INN { get; set; }
-            public string BankAccount { get; set; }
-            public string LegalAddress { get; set; }
-        }
-
-        private Dictionary<string, CompanyData> companies = new Dictionary<string, CompanyData>
-        {
-            ["Строймастер"] = new CompanyData
-            {
-                Name = "ООО \"Строймастер\"",
-                INN = "7701234567",
-                BankAccount = "40702810100000001234",
-                LegalAddress = "г. Москва, ул. Ленина, д. 1"
-            },
-            ["Аэророт"] = new CompanyData
-            {
-                Name = "ООО \"Аэророт\"",
-                INN = "7709876543",
-                BankAccount = "40702810200000005678",
-                LegalAddress = "г. СПб, ул. Мира, д. 10"
-            },
-            ["Чипсик"] = new CompanyData
-            {
-                Name = "ООО \"Чипсик\"",
-                INN = "7705554433",
-                BankAccount = "40702810300000009999",
-                LegalAddress = "г. Казань, пр. Победы, д. 5"
-            }
-        };
+        private string companyName;
+        private string companyINN;
+        private string companyBankAccount;
+        private string companyAddress;
+        private int documentDate;
 
         private List<object> documents = new List<object>();
         private object currentDocument;
-        private ComboBox cmbCompany;
+
+        private TabControl tabControl;
+        private TextBox txtCompanyName;
+        private TextBox txtINN;
+        private TextBox txtBankAccount;
+        private TextBox txtAddress;
+
+        private TextBox txtClient;
+        private TextBox txtAmountInvoice;
+        private TextBox txtDueDate;
+
+        private TextBox txtParty2;
+        private TextBox txtStartDate;
+        private TextBox txtEndDate;
+        private TextBox txtClauses;
+
+        private TextBox txtCustomer;
+        private TextBox txtActDate;
+
+        private ListBox lstDocuments;
+        private TextBox txtContent;
 
         public MainForm()
         {
             InitializeComponent();
-            InitializeGUI();
+            ShowStartupDialog();
         }
 
-        private void InitializeGUI()
+        private void ShowStartupDialog()
         {
-            this.Text = "DocBuilder";
-            this.Size = new Size(1200, 700);
+            var form = new Form();
+            form.Text = "Данные организации";
+            form.Size = new Size(450, 350);
+            form.StartPosition = FormStartPosition.CenterScreen;
 
-            var companyPanel = new Panel();
-            companyPanel.Dock = DockStyle.Top;
-            companyPanel.Height = 50;
+            form.Controls.Add(new Label { Text = "Название:", Location = new Point(20, 20), AutoSize = true });
+            txtCompanyName = new TextBox { Location = new Point(20, 45), Size = new Size(390, 23) };
+            form.Controls.Add(txtCompanyName);
 
-            var lblCompany = new Label();
-            lblCompany.Text = "Компания:";
-            lblCompany.Location = new Point(20, 15);
-            lblCompany.Size = new Size(150, 23);
-            lblCompany.AutoSize = true;
+            form.Controls.Add(new Label { Text = "ИНН:", Location = new Point(20, 85), AutoSize = true });
+            txtINN = new TextBox { Location = new Point(20, 110), Size = new Size(390, 23), Text = "7701234567" };
+            form.Controls.Add(txtINN);
 
-            cmbCompany = new ComboBox();
-            cmbCompany.Location = new Point(180, 12);
-            cmbCompany.Size = new Size(250, 23);
-            cmbCompany.DropDownStyle = ComboBoxStyle.DropDownList;
+            form.Controls.Add(new Label { Text = "Р/с:", Location = new Point(20, 150), AutoSize = true });
+            txtBankAccount = new TextBox { Location = new Point(20, 175), Size = new Size(390, 23), Text = "40702810100000001234" };
+            form.Controls.Add(txtBankAccount);
 
-            foreach (var company in companies.Keys)
+            form.Controls.Add(new Label { Text = "Адрес:", Location = new Point(20, 215), AutoSize = true });
+            txtAddress = new TextBox { Location = new Point(20, 240), Size = new Size(390, 23), Text = "г.Томск" };
+            form.Controls.Add(txtAddress);
+
+            var btnOK = new Button { Text = "OK", DialogResult = DialogResult.OK, Location = new Point(150, 280), Size = new Size(120, 35) };
+            form.Controls.Add(btnOK);
+            form.AcceptButton = btnOK;
+
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                cmbCompany.Items.Add(company);
+                companyName = txtCompanyName.Text;
+                companyINN = txtINN.Text;
+                companyBankAccount = txtBankAccount.Text;
+                companyAddress = txtAddress.Text;
+                documentDate = DateTime.Now.Year * 10000 + DateTime.Now.Month * 100 + DateTime.Now.Day;
             }
-            cmbCompany.SelectedIndex = 0;
-
-            companyPanel.Controls.Add(lblCompany);
-            companyPanel.Controls.Add(cmbCompany);
-            this.Controls.Add(companyPanel);
-
-            var splitContainer = new SplitContainer();
-            splitContainer.Dock = DockStyle.Fill;
-            splitContainer.SplitterDistance = 300;
-            splitContainer.SplitterWidth = 5;
-
-            var listBox = new ListBox();
-            listBox.Name = "lstDocuments";
-            listBox.Dock = DockStyle.Fill;
-            listBox.SelectedIndexChanged += ListBox_SelectedIndexChanged;
-            splitContainer.Panel1.Controls.Add(listBox);
-
-            var txtContent = new RichTextBox();
-            txtContent.Name = "txtDocumentContent";
-            txtContent.Multiline = true;
-            txtContent.Dock = DockStyle.Fill;
-            txtContent.ReadOnly = true;
-            txtContent.ScrollBars = RichTextBoxScrollBars.Vertical;
-            txtContent.Font = new Font("Consolas", 11, FontStyle.Regular);
-            txtContent.BackColor = Color.FromArgb(250, 250, 250);
-            txtContent.BorderStyle = BorderStyle.FixedSingle;
-            txtContent.Padding = new Padding(10);
-            splitContainer.Panel2.Controls.Add(txtContent);
-
-            this.Controls.Add(splitContainer);
-
-            var panel = new Panel();
-            panel.Dock = DockStyle.Top;
-            panel.Height = 70;
-            panel.BringToFront();
-
-            var btnInvoice = CreateButton("Счёт", 20, 15, BtnInvoice_Click);
-            var btnContract = CreateButton("Договор", 150, 15, BtnContract_Click);
-            var btnAct = CreateButton("Акт", 280, 15, BtnAct_Click);
-            var btnClone = CreateButton("Клонировать", 430, 15, BtnClone_Click);
-            var btnSave = CreateButton("Сохранить", 580, 15, BtnSave_Click);
-            var btnEdit = CreateButton("Редактировать", 710, 15, BtnEdit_Click);
-
-            panel.Controls.AddRange(new Control[] { btnInvoice, btnContract, btnAct, btnClone, btnSave, btnEdit});
-            this.Controls.Add(panel);
-            panel.BringToFront();
         }
 
-        private Button CreateButton(string text, int x, int y, EventHandler click)
+        private void InitializeComponent()
         {
-            var btn = new Button();
-            btn.Text = text;
-            btn.Location = new Point(x, y);
-            btn.Size = new Size(120, 35);
-            btn.Click += click;
-            return btn;
-        }
+            this.Text = "DocBuilderNoPattern";
+            this.Size = new Size(1000, 700);
 
-        private void BtnInvoice_Click(object sender, EventArgs e)
-        {
-            var selectedCompany = cmbCompany.SelectedItem.ToString();
-            var company = companies[selectedCompany];
+            tabControl = new TabControl();
+            tabControl.Location = new Point(10, 10);
+            tabControl.Size = new Size(600, 300);
 
-            var invoice = new Invoice(company.Name, company.INN, company.BankAccount)
+            var tabInvoice = new TabPage("Счёт");
+            tabInvoice.Controls.Add(new Label { Text = "Клиент:", Location = new Point(10, 10), AutoSize = true });
+            txtClient = new TextBox { Location = new Point(100, 7), Size = new Size(300, 23) };
+            tabInvoice.Controls.Add(txtClient);
+
+            tabInvoice.Controls.Add(new Label { Text = "Сумма:", Location = new Point(10, 40), AutoSize = true });
+            txtAmountInvoice = new TextBox { Location = new Point(100, 37), Size = new Size(150, 23) };
+            tabInvoice.Controls.Add(txtAmountInvoice);
+
+            tabInvoice.Controls.Add(new Label { Text = "Дата (YYYYMMDD):", Location = new Point(10, 70), AutoSize = true });
+            txtDueDate = new TextBox { Location = new Point(130, 67), Size = new Size(150, 23), Text = DateTime.Now.AddDays(30).ToString("yyyyMMdd") };
+            tabInvoice.Controls.Add(txtDueDate);
+
+            var btnCreateInvoice = new Button { Text = "Создать счёт", Location = new Point(10, 100), Size = new Size(150, 35) };
+            btnCreateInvoice.Click += (s, e) => CreateInvoice();
+            tabInvoice.Controls.Add(btnCreateInvoice);
+
+            tabControl.TabPages.Add(tabInvoice);
+
+            var tabContract = new TabPage("Договор");
+            tabContract.Controls.Add(new Label { Text = "Заказчик:", Location = new Point(10, 10), AutoSize = true });
+            txtParty2 = new TextBox { Location = new Point(100, 7), Size = new Size(300, 23) };
+            tabContract.Controls.Add(txtParty2);
+
+            tabContract.Controls.Add(new Label { Text = "Дата начала:", Location = new Point(10, 40), AutoSize = true });
+            txtStartDate = new TextBox { Location = new Point(120, 37), Size = new Size(150, 23), Text = DateTime.Now.ToString("yyyyMMdd") };
+            tabContract.Controls.Add(txtStartDate);
+
+            tabContract.Controls.Add(new Label { Text = "Дата окончания:", Location = new Point(10, 70), AutoSize = true });
+            txtEndDate = new TextBox { Location = new Point(140, 67), Size = new Size(150, 23), Text = DateTime.Now.AddYears(1).ToString("yyyyMMdd") };
+            tabContract.Controls.Add(txtEndDate);
+
+            tabContract.Controls.Add(new Label { Text = "Условия:", Location = new Point(10, 100), AutoSize = true });
+            txtClauses = new TextBox { Location = new Point(10, 120), Size = new Size(400, 80), Multiline = true, Text = "Стандартные условия" };
+            tabContract.Controls.Add(txtClauses);
+
+            var btnCreateContract = new Button { Text = "Создать договор", Location = new Point(10, 210), Size = new Size(150, 35) };
+            btnCreateContract.Click += (s, e) => CreateContract();
+            tabContract.Controls.Add(btnCreateContract);
+
+            tabControl.TabPages.Add(tabContract);
+
+            var tabAct = new TabPage("Акт");
+            tabAct.Controls.Add(new Label { Text = "Заказчик:", Location = new Point(10, 10), AutoSize = true });
+            txtCustomer = new TextBox { Location = new Point(100, 7), Size = new Size(300, 23) };
+            tabAct.Controls.Add(txtCustomer);
+
+            tabAct.Controls.Add(new Label { Text = "Дата акта:", Location = new Point(10, 40), AutoSize = true });
+            txtActDate = new TextBox { Location = new Point(100, 37), Size = new Size(150, 23), Text = DateTime.Now.ToString("yyyyMMdd") };
+            tabAct.Controls.Add(txtActDate);
+
+            var btnCreateAct = new Button { Text = "Создать акт", Location = new Point(10, 80), Size = new Size(150, 35) };
+            btnCreateAct.Click += (s, e) => CreateAct();
+            tabAct.Controls.Add(btnCreateAct);
+
+            tabControl.TabPages.Add(tabAct);
+
+            this.Controls.Add(tabControl);
+
+            lstDocuments = new ListBox { Location = new Point(10, 320), Size = new Size(300, 150) };
+            lstDocuments.SelectedIndexChanged += (s, e) =>
             {
-                ClientName = "Новый клиент",
-                Amount = 10000,
-                DueDate = DateTime.Now.AddDays(30)
+                if (lstDocuments.SelectedIndex >= 0 && lstDocuments.SelectedIndex < documents.Count)
+                {
+                    currentDocument = documents[lstDocuments.SelectedIndex];
+                    ShowDocument();
+                }
+            };
+                this.Controls.Add(lstDocuments);
+
+                txtContent = new TextBox { Location = new Point(320, 320), Size = new Size(650, 300), Multiline = true, ReadOnly = true, ScrollBars = ScrollBars.Vertical };
+                this.Controls.Add(txtContent);
+
+                var btnSave = new Button { Text = "Сохранить", Location = new Point(450, 630), Size = new Size(120, 35) };
+                btnSave.Click += (s, e) => SaveDocument();
+                this.Controls.Add(btnSave);
+            }
+        private void CreateInvoice()
+        {
+            var invoice = new Invoice
+            {
+                CompanyName = companyName,
+                INN = companyINN,
+                BankAccount = companyBankAccount,
+                ClientName = txtClient.Text,
+                Amount = int.Parse(txtAmountInvoice.Text),
+                DueDate = int.Parse(txtDueDate.Text)
             };
 
             documents.Add(invoice);
             currentDocument = invoice;
             UpdateList();
-            DisplayDocumentContent(currentDocument);
-            MessageBox.Show($"Счёт №{invoice.DocNumber} создан!\nКомпания: {company.Name}", "Успех");
+            ShowDocument();
+            MessageBox.Show($"Счёт №{invoice.DocNumber} создан");
         }
 
-        private void BtnContract_Click(object sender, EventArgs e)
+        private void CreateContract()
         {
-            var selectedCompany = cmbCompany.SelectedItem.ToString();
-            var company = companies[selectedCompany];
-
-            var contract = new Contract(company.Name, company.INN, company.LegalAddress)
+            var contract = new Contract
             {
-                Party1 = company.Name,
-                Party2 = "Заказчик",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddYears(1),
-                Clauses = "Стандартные условия"
+                CompanyName = companyName,
+                INN = companyINN,
+                LegalAddress = companyAddress,
+                Party1 = companyName,
+                Party2 = txtParty2.Text,
+                StartDate = int.Parse(txtStartDate.Text),
+                EndDate = int.Parse(txtEndDate.Text),
+                Clauses = txtClauses.Text
             };
 
             documents.Add(contract);
             currentDocument = contract;
             UpdateList();
-            DisplayDocumentContent(currentDocument);
-            MessageBox.Show($"Договор №{contract.DocNumber} создан!\nКомпания: {company.Name}", "Успех");
+            ShowDocument();
+            MessageBox.Show($"Договор №{contract.DocNumber} создан");
         }
 
-        private void BtnAct_Click(object sender, EventArgs e)
+        private void CreateAct()
         {
-            var selectedCompany = cmbCompany.SelectedItem.ToString();
-            var company = companies[selectedCompany];
-
-            var act = new Act(company.Name, company.INN, company.LegalAddress)
+            var act = new Act
             {
-                Executor = company.Name,
-                Customer = "Заказчик",
-                ActDate = DateTime.Now,
-                Amount = 50000
+                CompanyName = companyName,
+                INN = companyINN,
+                LegalAddress = companyAddress,
+                Executor = companyName,
+                Customer = txtCustomer.Text,
+                ActDate = int.Parse(txtActDate.Text)
             };
 
             documents.Add(act);
             currentDocument = act;
             UpdateList();
-            DisplayDocumentContent(currentDocument);
-            MessageBox.Show($"Акт №{act.DocNumber} создан!\nКомпания: {company.Name}", "Успех");
+            ShowDocument();
+            MessageBox.Show($"Акт №{act.DocNumber} создан");
         }
-        private void BtnEdit_Click(object sender, EventArgs e)
+
+
+        private void SaveDocument()
         {
             if (currentDocument == null)
             {
-                MessageBox.Show("Выберите документ для редактирования");
-                return;
-            }
-
-            bool hasChanges = false;
-
-            if (currentDocument is Invoice invoice)
-            {
-                var clientName = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Введите имя клиента:", "Редактирование счёта", invoice.ClientName);
-                if (!string.IsNullOrEmpty(clientName))
-                {
-                    invoice.ClientName = clientName;
-                    hasChanges = true;
-                }
-
-                var amountStr = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Введите сумму:", "Редактирование счёта", invoice.Amount.ToString("F2"));
-                if (double.TryParse(amountStr, out double amount))
-                {
-                    invoice.Amount = amount;
-                    hasChanges = true;
-                }
-            }
-            else if (currentDocument is Contract contract)
-            {
-                var party2 = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Введите заказчика:", "Редактирование договора", contract.Party2);
-                if (!string.IsNullOrEmpty(party2))
-                {
-                    contract.Party2 = party2;
-                    hasChanges = true;
-                }
-            }
-            else if (currentDocument is Act act)
-            {
-                var customer = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Введите заказчика:", "Редактирование акта", act.Customer);
-                if (!string.IsNullOrEmpty(customer))
-                {
-                    act.Customer = customer;
-                    hasChanges = true;
-                }
-
-                var amountStr = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Введите сумму:", "Редактирование акта", act.Amount.ToString("F2"));
-                if (double.TryParse(amountStr, out double amount))
-                {
-                    act.Amount = amount;
-                    hasChanges = true;
-                }
-            }
-
-            if (hasChanges)
-            {
-                UpdateList();
-
-                DisplayDocumentContent(currentDocument);
-
-                MessageBox.Show("Документ обновлён\nНе забудьте нажать 'Сохранить'", "Успех");
-            }
-            else
-            {
-                MessageBox.Show("Изменения не внесены", "Информация");
-            }
-        }
-        private void BtnClone_Click(object sender, EventArgs e)
-        {
-            if (currentDocument == null)
-            {
-                MessageBox.Show("Выберите документ для клонирования");
-                return;
-            }
-
-            if (currentDocument is Invoice invoice)
-            {
-                var newInvoice = new Invoice(invoice.CompanyName, invoice.INN, invoice.BankAccount)
-                {
-                    ClientName = invoice.ClientName,
-                    Amount = invoice.Amount,
-                    DueDate = invoice.DueDate,
-                    CompanyName = invoice.CompanyName,
-                    INN = invoice.INN,
-                    BankAccount = invoice.BankAccount
-                };
-                documents.Add(newInvoice);
-                currentDocument = newInvoice;
-            }
-            else if (currentDocument is Contract contract)
-            {
-                var newContract = new Contract(contract.CompanyName, contract.INN, contract.LegalAddress)
-                {
-                    Party1 = contract.Party1,
-                    Party2 = contract.Party2,
-                    StartDate = contract.StartDate,
-                    EndDate = contract.EndDate,
-                    Clauses = contract.Clauses,
-                    CompanyName = contract.CompanyName,
-                    INN = contract.INN,
-                    LegalAddress = contract.LegalAddress
-                };
-                documents.Add(newContract);
-                currentDocument = newContract;
-            }
-            else if (currentDocument is Act act)
-            {
-                var newAct = new Act(act.CompanyName, act.INN, act.LegalAddress)
-                {
-                    Executor = act.Executor,
-                    Customer = act.Customer,
-                    ActDate = act.ActDate,
-                    Amount = act.Amount,
-                    CompanyName = act.CompanyName,
-                    INN = act.INN,
-                    LegalAddress = act.LegalAddress
-                };
-                documents.Add(newAct);
-                currentDocument = newAct;
-            }
-
-            UpdateList();
-            DisplayDocumentContent(currentDocument);
-            MessageBox.Show("Документ клонирован!", "Успех");
-        }
-
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            if (currentDocument == null)
-            {
-                MessageBox.Show("Нет документа для сохранения");
+                MessageBox.Show("Выберите документ");
                 return;
             }
 
             using (var sfd = new SaveFileDialog())
             {
-                sfd.Filter = "Text Files|*.txt";
+                sfd.Filter = "Text|*.txt";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     if (currentDocument is Invoice inv) inv.Save(sfd.FileName);
                     else if (currentDocument is Contract con) con.Save(sfd.FileName);
                     else if (currentDocument is Act a) a.Save(sfd.FileName);
 
-                    MessageBox.Show("Документ сохранён!", "Успех");
+                    MessageBox.Show("Сохранено!");
                 }
-            }
-        }
-
-        private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var list = sender as ListBox;
-            if (list?.SelectedIndex >= 0 && list.SelectedIndex < documents.Count)
-            {
-                currentDocument = documents[list.SelectedIndex];
-                DisplayDocumentContent(currentDocument);
             }
         }
 
         private void UpdateList()
         {
-            var listBox = this.Controls.Find("lstDocuments", true)[0] as ListBox;
-            if (listBox == null)
-            {
-                MessageBox.Show("Ошибка: не найден список документов!");
-                return;
-            }
-
-            listBox.Items.Clear();
-
-            int index = 0;
+            lstDocuments.Items.Clear();
             foreach (var doc in documents)
             {
                 if (doc is Invoice inv)
-                    listBox.Items.Add($"Счёт №{inv.DocNumber} — {inv.ClientName}");
+                    lstDocuments.Items.Add($"Счёт №{inv.DocNumber} — {inv.ClientName}");
                 else if (doc is Contract con)
-                    listBox.Items.Add($"Договор №{con.DocNumber} — {con.Party2}");
+                    lstDocuments.Items.Add($"Договор №{con.DocNumber} — {con.Party2}");
                 else if (doc is Act a)
-                    listBox.Items.Add($"Акт №{a.DocNumber} — {a.Customer}");
-
-                index++;
+                    lstDocuments.Items.Add($"Акт №{a.DocNumber} — {a.Customer}");
             }
         }
 
-        private void DisplayDocumentContent(object doc)
+        private void ShowDocument()
         {
-            var txtContent = this.Controls.Find("txtDocumentContent", true)[0] as RichTextBox;
-
-            if (txtContent == null) return;
-
             txtContent.Clear();
-            txtContent.Font = new Font("Consolas", 10, FontStyle.Regular);
-            txtContent.WordWrap = true;
-
-            if (doc is Invoice invoice)
-            {
-                txtContent.AppendText($"═══════════════════════════════════\n");
-                txtContent.AppendText($"       СЧЁТ №{invoice.DocNumber}\n");
-                txtContent.AppendText($"═══════════════════════════════════\n\n");
-                txtContent.AppendText($"ОРГАНИЗАЦИЯ:\n");
-                txtContent.AppendText($"  {invoice.CompanyName}\n");
-                txtContent.AppendText($"  ИНН: {invoice.INN}\n");
-                txtContent.AppendText($"  Р/с: {invoice.BankAccount}\n\n");
-                txtContent.AppendText($"КЛИЕНТ:\n");
-                txtContent.AppendText($"  {invoice.ClientName}\n\n");
-                txtContent.AppendText($"СУММА: {invoice.Amount:C}\n");
-                txtContent.AppendText($"ДАТА ОПЛАТЫ: {invoice.DueDate:dd.MM.yyyy}");
-            }
-            else if (doc is Contract contract)
-            {
-                txtContent.AppendText($"═══════════════════════════════════\n");
-                txtContent.AppendText($"    ДОГОВОР №{contract.DocNumber}\n");
-                txtContent.AppendText($"═══════════════════════════════════\n\n");
-                txtContent.AppendText($"ОРГАНИЗАЦИЯ:\n");
-                txtContent.AppendText($"  {contract.CompanyName}\n");
-                txtContent.AppendText($"  ИНН: {contract.INN}\n");
-                txtContent.AppendText($"  АДРЕС:\n  {contract.LegalAddress}\n\n");
-                txtContent.AppendText($"СТОРОНЫ:\n");
-                txtContent.AppendText($"  1. {contract.Party1}\n");
-                txtContent.AppendText($"  2. {contract.Party2}\n\n");
-                txtContent.AppendText($"ПЕРИОД:\n");
-                txtContent.AppendText($"  с {contract.StartDate:dd.MM.yyyy}\n");
-                txtContent.AppendText($"  по {contract.EndDate:dd.MM.yyyy}\n\n");
-                txtContent.AppendText($"УСЛОВИЯ:\n  {contract.Clauses}");
-            }
-            else if (doc is Act act)
-            {
-                txtContent.AppendText($"═══════════════════════════════════\n");
-                txtContent.AppendText($"       АКТ №{act.DocNumber}\n");
-                txtContent.AppendText($"═══════════════════════════════════\n\n");
-                txtContent.AppendText($"ОРГАНИЗАЦИЯ:\n");
-                txtContent.AppendText($"  {act.CompanyName}\n");
-                txtContent.AppendText($"  ИНН: {act.INN}\n");
-                txtContent.AppendText($"  АДРЕС:\n  {act.LegalAddress}\n\n");
-                txtContent.AppendText($"ИСПОЛНИТЕЛЬ: {act.Executor}\n");
-                txtContent.AppendText($"ЗАКАЗЧИК: {act.Customer}\n");
-                txtContent.AppendText($"ДАТА: {act.ActDate:dd.MM.yyyy}\n");
-                txtContent.AppendText($"СУММА: {act.Amount:C}");
-            }
-            else
-            {
-                txtContent.AppendText("Выберите документ для просмотра");
-            }
+            if (currentDocument is Invoice inv)
+                txtContent.Text = inv.GetText();
+            else if (currentDocument is Contract con)
+                txtContent.Text = con.GetText();
+            else if (currentDocument is Act a)
+                txtContent.Text = a.GetText();
         }
     }
 }

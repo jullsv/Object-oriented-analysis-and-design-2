@@ -5,9 +5,9 @@ namespace DocBuilderNoPattern.Documents
 {
     public class Act
     {
-        public string DocumentType { get; set; } = "Акт выполненных работ";
+        public string DocumentType { get; set; }
         public int DocNumber { get; set; }
-        public string Title { get; set; } = "Акт выполненных работ";
+        public string Title { get; set; }
 
         public string CompanyName { get; set; }
         public string INN { get; set; }
@@ -15,46 +15,35 @@ namespace DocBuilderNoPattern.Documents
 
         public string Executor { get; set; }
         public string Customer { get; set; }
-        public DateTime ActDate { get; set; }
-        public double Amount { get; set; }
+        public int ActDate { get; set; }
 
-        public Act(string companyName, string inn, string legalAddress)
+        public Act()
         {
-            DocNumber = GenerateNumber();
-            CompanyName = companyName;
-            INN = inn;
-            LegalAddress = legalAddress;
-        }
-
-        private int GenerateNumber()
-        {
-            return new Random().Next(1000, 9999);
+            DocNumber = new Random().Next(1000, 9999);
+            DocumentType = "Акт выполненных работ";
+            Title = "Акт выполненных работ";
         }
 
         public void Save(string path)
         {
-            File.WriteAllText(path, GetDocumentText());
+            File.WriteAllText(path, GetText());
         }
 
         public void Render()
         {
-            Console.WriteLine($"=== {Title} №{DocNumber} ===");
-            Console.WriteLine($"Исполнитель: {Executor}");
-            Console.WriteLine($"Заказчик: {Customer}");
-            Console.WriteLine($"Дата: {ActDate:dd.MM.yyyy}");
-            Console.WriteLine($"Сумма: {Amount:C}");
+            Console.WriteLine(GetText());
         }
 
-        public string GetDocumentText()
+        public string GetText()
         {
             return $"Акт №{DocNumber}\n" +
+                   $"Тип: {DocumentType}\n" +
                    $"Организация: {CompanyName}\n" +
                    $"ИНН: {INN}\n" +
-                   $"Юр. адрес: {LegalAddress}\n" +
+                   $"Адрес: {LegalAddress}\n" +
                    $"Исполнитель: {Executor}\n" +
                    $"Заказчик: {Customer}\n" +
-                   $"Дата акта: {ActDate:dd.MM.yyyy}\n" +
-                   $"Сумма: {Amount:C}";
+                   $"Дата акта: {ActDate}";
         }
     }
 }
