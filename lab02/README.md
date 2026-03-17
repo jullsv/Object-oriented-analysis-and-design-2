@@ -13,7 +13,8 @@
 
 Это решение можно описать с помощью диаграммы классов:
 
-<img width="931" height="479" alt="image" src="https://github.com/user-attachments/assets/813e0be2-06a9-4913-b5c5-3baf6749fe38" />
+<img width="931" height="479" alt="image" src="https://github.com/user-attachments/assets/f9062440-3d73-4e0d-a600-fab7d4d6de3e" />
+
 
 *Рисунок 1 - диаграмма классов паттерна Decorator*
 
