@@ -21,7 +21,8 @@
 
 На рисунке 2 изображена диаграмма объектов для создания мема.
 
-<img width="891" height="419" alt="image" src="https://github.com/user-attachments/assets/7dd68712-b0b3-409e-9ca4-a133b5a409a6" />
+<img width="161" height="536" alt="image" src="https://github.com/user-attachments/assets/0176e6c4-514a-4690-a713-b9ed26375a02" />
+
 
 *Рисунок 2 - диаграмма объектов создания мема*
 
