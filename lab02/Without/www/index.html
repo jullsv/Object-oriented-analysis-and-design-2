@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДЕКОРИРУЕМ МЕМЫ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MEME EDITOR</h1>
+        <div class="editor">
+            <div class="preview">
+                <h2>Предпросмотр</h2>
+                <div id="memePreview" class="meme-preview">
+                    <img id="baseImage" src="cat.jpg" alt="Base Meme">
+                    <div id="overlays"></div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <h2>Что хотим добавить?</h2>
+                
+                <div class="control-group">
+                    <label>Текст:</label>
+                    <input type="text" id="textInput" placeholder="Введите текст">
+                    <select id="textPosition">
+                        <option value="top">Сверху</option>
+                        <option value="bottom">Снизу</option>
+                        <option value="center">По центру</option>
+                    </select>
+                    <input type="number" id="fontSize" value="40" min="10" max="100">
+                    <input type="color" id="textColor" value="#ffffff">
+                    <button onclick="addText()">Добавить текст</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>Фильтр:</label>
+                    <select id="filterType">
+                        <option value="grayscale">Ч/Б</option>
+                        <option value="sepia">Сепия</option>
+                        <option value="vintage">Винтаж</option>
+                    </select>
+                    <button onclick="addFilter()">Применить</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>Рамка:</label>
+                    <input type="number" id="borderWidth" value="50" min="10" max="200">
+                    <input type="color" id="borderColor" value="#ffffff">
+                    <button onclick="addBorder()">Добавить</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>Стикер:</label>
+                    <input type="text" id="stickerPath" placeholder="emoji.png">
+                    <select id="stickerPosition">
+                        <option value="top-left">Левый верх</option>
+                        <option value="top-right">Правый верх</option>
+                        <option value="center">По центру</option>
+                    </select>
+                    <button onclick="addSticker()">Добавить</button>
+                </div>
+                
+                <div class="control-group">
+                    <button onclick="resetMeme()" class="btn-reset">Сбросить</button>
+                    <button onclick="saveMeme()" class="btn-save">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

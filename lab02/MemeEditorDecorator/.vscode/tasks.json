@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C++ Build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-pthread",
+                "-D_WIN32_WINNT=0x0A00",
+                "-I", "${workspaceFolder}",
+                "-I", "${workspaceFolder}/components",
+                "-o", "meme_server.exe",
+                "main.cpp",
+                "components/memeimage.cpp",
+                "components/memedecorator.cpp",
+                "components/textdecorator.cpp",
+                "components/filterdecorator.cpp",
+                "components/borderdecorator.cpp",
+                "components/stickerdecorator.cpp",
+                "-lws2_32",
+                "-liphlpapi"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
