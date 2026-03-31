@@ -34,24 +34,24 @@
 Определяет общие методы GetName() и GetSize().
 Имеет поле path для хранения пути к файлу.
 
-3. ConcreteElements
+2. ConcreteElements
 
 ImageFile — представляет изображение с полями width, height, format.
 DocumentFile — представляет документ с полями pages, wordCount.
 Каждый реализует метод Accept(), который вызывает соответствующий метод посетителя (visitor.VisitImageFile() или visitor.VisitDocumentFile()).
 
-4. IFileVisitor (интерфейс посетителя)
+3. IFileVisitor (интерфейс посетителя)
    
 Объявляет методы VisitImageFile() и VisitDocumentFile() для каждого типа элемента.
 Содержит поле outputPath для пути сохранения результата.
 
-6. ConcreteVisitors (конкретные посетители)
+4. ConcreteVisitors (конкретные посетители)
    
  - ConvertToJPEGVisitor — конвертирует файлы в JPEG (параметр quality)
  - ConvertToPNGVisitor — конвертирует файлы в PNG (параметр compression)
  - ConvertToPDFVisitor — конвертирует файлы в PDF (параметр pageSize)
 
-8. ObjectStructure
+5. ObjectStructure
    
 Хранит коллекцию файлов.
 Предоставляет интерфейс для обхода элементов посетителем.
