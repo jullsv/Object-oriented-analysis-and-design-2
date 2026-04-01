@@ -22,13 +22,13 @@
 
 Это решение можно описать с помощью диаграммы классов:
 
-<img width="1288" height="553" alt="image" src="https://github.com/user-attachments/assets/a713768c-4af8-43e5-be28-c8749ee629b2" />
+<img width="1288" height="628" alt="image" src="https://github.com/user-attachments/assets/75a7174c-debc-4615-9a4b-dc26da1b65f3" />
 
 *Рисунок 1 - диаграмма классов паттерна Visitor*
 
 Основные компоненты:
 
-1. IFile - Базовый интерфейс для всех типов файлов.
+1. IFile - Базовый класс для всех типов файлов.
    
 Содержит метод Accept(visitor), который принимает посетителя.
 Определяет общие методы GetName() и GetSize().
@@ -40,7 +40,7 @@ ImageFile — представляет изображение с полями wi
 DocumentFile — представляет документ с полями pages, wordCount.
 Каждый реализует метод Accept(), который вызывает соответствующий метод посетителя (visitor.VisitImageFile() или visitor.VisitDocumentFile()).
 
-3. IFileVisitor (интерфейс посетителя)
+3. IFileVisitor (базовый класс посетителя)
    
 Объявляет методы VisitImageFile() и VisitDocumentFile() для каждого типа элемента.
 Содержит поле outputPath для пути сохранения результата.
@@ -54,7 +54,7 @@ DocumentFile — представляет документ с полями pages
 5. ObjectStructure
    
 Хранит коллекцию файлов.
-Предоставляет интерфейс для обхода элементов посетителем.
+
 10. Client (клиент)
 Создает структуру файлов.
 Применяет посетителей для выполнения операций конвертации.
