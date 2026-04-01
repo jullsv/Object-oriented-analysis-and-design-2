@@ -22,7 +22,7 @@
 
 Это решение можно описать с помощью диаграммы классов:
 
-<img width="1288" height="628" alt="image" src="https://github.com/user-attachments/assets/75a7174c-debc-4615-9a4b-dc26da1b65f3" />
+<img width="1288" height="645" alt="image" src="https://github.com/user-attachments/assets/f81df9b4-14be-4cf2-8d47-7412a3fa9402" />
 
 *Рисунок 1 - диаграмма классов паттерна Visitor*
 
