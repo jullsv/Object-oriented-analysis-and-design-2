@@ -1,3 +1,19 @@
 .vs/
 bin/
 obj/
+# Maven build artifacts
+target/
+*.log
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled Java
+*.class
