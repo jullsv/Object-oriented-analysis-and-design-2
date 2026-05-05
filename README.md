@@ -17,6 +17,6 @@
 
 Решение можно описать с помощью диаграммы классов:
 
-<img width="581" height="199" alt="image" src="https://github.com/user-attachments/assets/50cf3c0e-29f0-4ed1-bc4f-8af19611c5df" />
+<img width="581" height="222" alt="image" src="https://github.com/user-attachments/assets/88364c08-9e51-4eea-b74a-95c0c200efbd" />
 
 *Рисунок 1 - диаграмма классов сервиса доставки*
