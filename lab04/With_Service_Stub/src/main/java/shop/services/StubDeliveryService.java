@@ -2,7 +2,7 @@ package shop.services;
 
 import shop.models.DeliveryResult;
 
-public final class StubDeliveryService implements IDeliveryService {
+public class StubDeliveryService implements IDeliveryService {
 
     @Override
     public DeliveryResult calculate(String cityFrom, String cityTo, double weight) {
@@ -10,7 +10,7 @@ public final class StubDeliveryService implements IDeliveryService {
         int days;
 
         if (cityFrom.equalsIgnoreCase(cityTo)) {
-            baseCost = 300; 
+            baseCost = 300;
             days = 1;
         } else {
             baseCost = 800;
@@ -18,12 +18,11 @@ public final class StubDeliveryService implements IDeliveryService {
         }
 
         double totalCost = baseCost + (weight * 50);
-
         return new DeliveryResult(totalCost, days);
     }
 
     @Override
     public String getName() {
-        return "Stub Delivery (Test Logic)";
+        return "Stub Delivery Service";
     }
 }

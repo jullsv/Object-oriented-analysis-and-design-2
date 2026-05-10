@@ -1,9 +1,9 @@
 package shop.models;
 
 public class Product {
-    private final String name;
-    private final double price;
-    private final double weight;
+    private String name;
+    private double price;
+    private double weight;
 
     public Product(String name, double price, double weight) {
         this.name = name;
@@ -11,9 +11,17 @@ public class Product {
         this.weight = weight;
     }
 
-    public String getName() { return name; }
-    public double getPrice() { return price; }
-    public double getWeight() { return weight; }
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
 
     @Override
     public String toString() {
