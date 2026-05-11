@@ -28,8 +28,7 @@ public class ShopApp extends Application {
 
     private OrderService orderService;
     private DatabaseManager databaseManager;
-    private List<Product> cart = new ArrayList<>();
-    private List<Product> availableProducts = new ArrayList<>();
+    private final List<Product> cart = new ArrayList<>();
     
     private ListView<Product> cartView;
     private Label resultLabel;
@@ -41,7 +40,7 @@ public class ShopApp extends Application {
         orderService = new OrderService(new StubDeliveryService());
         databaseManager = new DatabaseManager();
 
-        stage.setTitle("Магазин Электроники - Расчет Доставки");
+        stage.setTitle("Магазин техники - Расчет Доставки");
         
         VBox root = new VBox(15);
         root.setPadding(new Insets(20));
@@ -63,7 +62,7 @@ public class ShopApp extends Application {
         Label productsLabel = new Label("Выберите товары:");
         productsLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
         
-        availableProducts = databaseManager.getAllProducts();
+        List<Product> productsFromDB = databaseManager.getAllProducts();
         
         GridPane productsGrid = new GridPane();
         productsGrid.setHgap(15);
@@ -72,7 +71,7 @@ public class ShopApp extends Application {
         
         int col = 0;
         int row = 0;
-        for (Product product : availableProducts) {
+        for (Product product : productsFromDB) {
             Button btn = new Button(product.getName() + "\n" + (int)product.getPrice() + " руб");
             btn.setPrefSize(200, 70);
             btn.setStyle(
@@ -164,6 +163,7 @@ public class ShopApp extends Application {
         resultLabel.setPadding(new Insets(15, 20, 15, 20));
         resultLabel.setMaxWidth(Double.MAX_VALUE);
         resultLabel.setMinHeight(80);
+
         Label serviceInfo = new Label("Режим: " + orderService.getServiceName());
         serviceInfo.setStyle("-fx-text-fill: #95a5a6; -fx-font-size: 12px;");
 
@@ -192,10 +192,8 @@ public class ShopApp extends Application {
 
     private void updateCartView() {
         cartView.getItems().clear();
-        double total = 0;
         for (Product p : cart) {
             cartView.getItems().add(p);
-            total += p.getPrice();
         }
         if (cart.isEmpty()) {
             resultLabel.setText("Корзина пуста. Добавьте товары.");
@@ -230,11 +228,11 @@ public class ShopApp extends Application {
             double totalCost = goodsSum + result.getCost();
             
             String msg = String.format(
-                "✅ Расчёт доставки выполнен!\n\n" +
-                "📦 Товары: %.0f руб\n" +
-                "🚚 Доставка (%s → %s): %.0f руб (%d дн.)\n" +
+                " Расчёт доставки выполнен!\n\n" +
+                " Товары: %.0f руб\n" +
+                " Доставка (%s → %s): %.0f руб (%d дн.)\n" +
                 "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n" +
-                "💰 ИТОГО: %.0f руб",
+                " ИТОГО: %.0f руб",
                 goodsSum, from, to, result.getCost(), result.getDays(), totalCost
             );
             
